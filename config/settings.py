@@ -29,7 +29,11 @@ DEBUG = config('DEBUG', default=True, cast=bool)
 # Empty list in development, must specify in production
 # Example: ['yourdomain.com', 'www.yourdomain.com']
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='127.0.0.1,localhost', cast=lambda v: [s.strip() for s in v.split(',')])
+ALLOWED_HOSTS = [
+    "localhost",
+    "127.0.0.1",
+    "budgettracker-production-033c.up.railway.app",
+]
 
 
 # Application definition
@@ -54,6 +58,8 @@ INSTALLED_APPS = [
     'apps.transactions',           # Transaction management app
     'apps.categories',             # Category management app
     'apps.budgets',                # Budget management app
+
+    'django_extensions',
 ]
 
 # MIDDLEWARE: Functions that process requests/responses
