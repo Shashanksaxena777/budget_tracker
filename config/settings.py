@@ -1,3 +1,4 @@
+import dj_database_url
 from decouple import config
 import os
 
@@ -97,10 +98,11 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Using SQLite for development (file-based database)
 # In production, switch to PostgreSQL or MySQL
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',  # Database type
-        'NAME': BASE_DIR / 'db.sqlite3',         # Database file location
-    }
+    'default': dj_database_url.config(
+        default=config('DATABASE_URL', default='sqlite:///db.sqlite3'),
+        conn_max_age=600,
+        conn_health_checks=True,
+    )
 }
 
 # Database - Use PostgreSQL in production
