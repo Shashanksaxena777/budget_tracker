@@ -209,7 +209,7 @@ REST_FRAMEWORK = {
 # CORS (Cross-Origin Resource Sharing) allows React app to communicate with Django
 
 # For development: Allow all origins
-CORS_ALLOW_ALL_ORIGINS = config('CORS_ALLOW_ALL_ORIGINS', default=True, cast=bool)
+# CORS_ALLOW_ALL_ORIGINS = config('CORS_ALLOW_ALL_ORIGINS', default=True, cast=bool)
 
 # For production: Specify exact origins
 # CORS_ALLOWED_ORIGINS = [
