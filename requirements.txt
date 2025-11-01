@@ -1,0 +1,23 @@
+# Core Django Framework
+Django==4.2.25 
+
+# Django REST Framework for building APIs
+djangorestframework==3.15.2
+
+# CORS headers to allow frontend communication
+django-cors-headers==4.4.0
+
+# Filtering support for APIs
+django-filter==24.3
+
+# Environment variable management
+python-decouple==3.8
+
+# PostgreSQL adapter (for production)
+psycopg2-binary==2.9.9
+
+# For deployment
+gunicorn==21.2.0
+
+# Whitenoise for serving static files in production
+whitenoise==6.6.0
