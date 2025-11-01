@@ -105,17 +105,17 @@ DATABASES = {
     )
 }
 
-# Database - Use PostgreSQL in production
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('PGDATABASE', default='railway'),
-        'USER': config('PGUSER', default='postgres'),
-        'PASSWORD': config('PGPASSWORD', default=''),
-        'HOST': config('PGHOST', default='localhost'),
-        'PORT': config('PGPORT', default='5432'),
-    }
-}
+# # Database - Use PostgreSQL in production
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': config('PGDATABASE', default='railway'),
+#         'USER': config('PGUSER', default='postgres'),
+#         'PASSWORD': config('PGPASSWORD', default=''),
+#         'HOST': config('PGHOST', default='localhost'),
+#         'PORT': config('PGPORT', default='5432'),
+#     }
+# }
 
 
 # Password validation
