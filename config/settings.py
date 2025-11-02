@@ -23,17 +23,14 @@ SECRET_KEY = config('SECRET_KEY', default='django-insecure-your-secret-key-here-
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True shows detailed error pages (helpful for development)
 # DEBUG = False shows generic error pages (required for production)
-DEBUG = config('DEBUG', default=True, cast=bool)
+DEBUG = config('DEBUG', default=False, cast=bool)
 
-# ALLOWED_HOSTS: List of domains that can access this Django app
-# Empty list in development, must specify in production
-# Example: ['yourdomain.com', 'www.yourdomain.com']
-
-ALLOWED_HOSTS = [
-    "localhost",
-    "127.0.0.1",
-    "budgettracker-production-033c.up.railway.app",
-]
+# ALLOWED_HOSTS - Allow Railway domain
+ALLOWED_HOSTS = config(
+    'ALLOWED_HOSTS', 
+    default='127.0.0.1,localhost,budgettracker-production-033c.up.railway.app',
+    cast=lambda v: [s.strip() for s in v.split(',')]
+)
 
 
 # Application definition
@@ -215,6 +212,21 @@ REST_FRAMEWORK = {
 # CORS_ALLOWED_ORIGINS = [
 #     "https://your-frontend-domain.com",
 # ]
+
+
+# CORS Configuration - Update for your Railway URL
+CORS_ALLOW_ALL_ORIGINS = config('CORS_ALLOW_ALL_ORIGINS', default=True, cast=bool)
+
+# For production, use specific origins
+CORS_ALLOWED_ORIGINS = config(
+    'CORS_ALLOWED_ORIGINS',
+    default='',
+    cast=lambda v: [s.strip() for s in v.split(',')] if v else []
+)
+
+# If no specific origins provided and not allowing all, allow localhost for testing
+if not CORS_ALLOW_ALL_ORIGINS and not CORS_ALLOWED_ORIGINS:
+    CORS_ALLOWED_ORIGINS = ['http://localhost:5173', 'http://localhost:3000']
 
 # Allow credentials (cookies, authorization headers)
 CORS_ALLOW_CREDENTIALS = True

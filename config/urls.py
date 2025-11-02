@@ -4,21 +4,29 @@ This is the entry point for all URLs in the project.
 """
 
 from django.contrib import admin
+from django.http import JsonResponse
 from django.urls import path, include
 
+def api_root(request):
+    """Root API endpoint"""
+    return JsonResponse({
+        'message': 'Budget Tracker API',
+        'status': 'active',
+        'endpoints': {
+            'auth': '/api/auth/',
+            'transactions': '/api/transactions/',
+            'categories': '/api/categories/',
+            'budgets': '/api/budgets/',
+            'admin': '/admin/',
+        }
+    })
+
+
+
 urlpatterns = [
-    # Django Admin Panel
-    # URL: /admin/
-    # Provides web interface to manage database
+    path('', api_root, name='api-root'),  # Add this
     path('admin/', admin.site.urls),
-    
-    # Authentication APIs
-    # URL: /api/auth/...
-    # includes all URLs from apps.users.urls
-    # Example: /api/auth/login/, /api/auth/logout/, etc.
     path('api/auth/', include('apps.users.urls')),
-    
-    # We'll add more API endpoints later:
     path('api/transactions/', include('apps.transactions.urls')),
     path('api/categories/', include('apps.categories.urls')),
     path('api/budgets/', include('apps.budgets.urls')),
