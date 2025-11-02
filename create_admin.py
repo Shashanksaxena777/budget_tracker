@@ -9,7 +9,7 @@ password = "testpass123"
 first_name = "Shashank"
 last_name = "Saxena"
 
-# Create superuser if not already exists
+# Check if user already exists
 if not User.objects.filter(username=username).exists():
     user = User.objects.create_superuser(
         username=username,
@@ -21,4 +21,8 @@ if not User.objects.filter(username=username).exists():
     user.save()
     print("✅ Superuser created successfully with full name.")
 else:
-    print("⚠️ Superuser already exists.")
+    user = User.objects.get(username=username)
+    user.first_name = first_name
+    user.last_name = last_name
+    user.save()
+    print("⚠️ Superuser already existed — updated first and last name.")
