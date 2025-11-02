@@ -1,1 +1,1 @@
-web: python manage.py shell < create_admin.py
+web: gunicorn config.wsgi
