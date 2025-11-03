@@ -13,7 +13,7 @@ from apps.transactions.models import Transaction
 # 🔐 Gemini Configuration
 # ===========================
 
-GEMINI_API_KEY = "AIzaSyDFqWK02DAIQk7CXAYboAtMGFS8Av_eNrM"
+GEMINI_API_KEY = config('GEMINI_API_KEY')
 genai.configure(api_key=GEMINI_API_KEY)
 
 
