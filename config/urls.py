@@ -30,6 +30,7 @@ urlpatterns = [
     path('api/transactions/', include('apps.transactions.urls')),
     path('api/categories/', include('apps.categories.urls')),
     path('api/budgets/', include('apps.budgets.urls')),
+    path('api/ai/', include('apps.ai.urls')),
 ]
 
 """
