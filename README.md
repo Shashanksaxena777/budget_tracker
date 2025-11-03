@@ -23,7 +23,7 @@ Django REST Framework backend for the Personal Budget Tracker application.
 
 ## 📋 Prerequisites
 
-- Python 3.8 or higher
+- Python 3.10 or higher
 - pip (Python package manager)
 - Virtual environment (recommended)
 
