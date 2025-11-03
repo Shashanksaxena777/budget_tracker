@@ -2,27 +2,14 @@ import dj_database_url
 from decouple import config
 import os
 
-"""
-Django settings for budget tracker project.
-This file controls all configuration for the Django application.
-"""
 
 from pathlib import Path
 from decouple import config
 
-# Build paths inside the project
-# BASE_DIR points to the root directory of your project
-# Example: /home/user/budget-tracker-backend/
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY is used for cryptographic signing (sessions, tokens, etc.)
-# In production, this should be stored in environment variables
 SECRET_KEY = config('SECRET_KEY', default='django-insecure-your-secret-key-here-change-in-production')
 
-# SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True shows detailed error pages (helpful for development)
-# DEBUG = False shows generic error pages (required for production)
 DEBUG = config('DEBUG', default=False, cast=bool)
 
 # ALLOWED_HOSTS - Allow Railway domain
@@ -33,7 +20,6 @@ ALLOWED_HOSTS = config(
 )
 
 
-# Application definition
 # INSTALLED_APPS: All Django apps that are active in this project
 INSTALLED_APPS = [
     # Django built-in apps (admin interface, authentication, etc.)
@@ -60,7 +46,6 @@ INSTALLED_APPS = [
 ]
 
 # MIDDLEWARE: Functions that process requests/responses
-# Order matters! Each middleware wraps the next one
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',     # Security enhancements
     'django.contrib.sessions.middleware.SessionMiddleware',  # Session management
@@ -108,18 +93,6 @@ DATABASES = {
     )
 }
 
-# # Database - Use PostgreSQL in production
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': config('PGDATABASE', default='railway'),
-#         'USER': config('PGUSER', default='postgres'),
-#         'PASSWORD': config('PGPASSWORD', default=''),
-#         'HOST': config('PGHOST', default='localhost'),
-#         'PORT': config('PGPORT', default='5432'),
-#     }
-# }
-
 
 # Password validation
 # Django enforces these rules when users create passwords
@@ -152,7 +125,6 @@ USE_TZ = True                # Use timezone-aware datetimes
 
 # Static files (CSS, JavaScript, Images)
 # These settings tell Django where to find and serve static files
-# Static files
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
@@ -200,18 +172,6 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.BrowsableAPIRenderer',  # Web UI for testing APIs
     ],
 }
-
-
-# CORS Configuration
-# CORS (Cross-Origin Resource Sharing) allows React app to communicate with Django
-
-# For development: Allow all origins
-# CORS_ALLOW_ALL_ORIGINS = config('CORS_ALLOW_ALL_ORIGINS', default=True, cast=bool)
-
-# For production: Specify exact origins
-# CORS_ALLOWED_ORIGINS = [
-#     "https://your-frontend-domain.com",
-# ]
 
 
 # CORS Configuration - Update for your Railway URL
