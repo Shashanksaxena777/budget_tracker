@@ -129,18 +129,6 @@ Server will start at: `http://127.0.0.1:8000/`
 | DELETE | `/api/transactions/{id}/` | Delete transaction | Yes |
 | GET | `/api/transactions/summary/` | Financial summary | Yes |
 
-**Query Parameters:**
-- `page` - Page number
-- `page_size` - Items per page (10, 20, 50, 100)
-- `type` - Filter by income/expense
-- `category` - Filter by category ID
-- `date_from` - Start date (YYYY-MM-DD)
-- `date_to` - End date (YYYY-MM-DD)
-- `min_amount` - Minimum amount
-- `max_amount` - Maximum amount
-- `search` - Search in description
-- `ordering` - Sort field (date, -date, amount, -amount)
-
 ### Categories
 
 | Method | Endpoint | Description | Auth Required |
