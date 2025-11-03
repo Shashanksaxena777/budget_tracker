@@ -72,6 +72,7 @@ SECRET_KEY=your-secret-key-here
 DEBUG=True
 ALLOWED_HOSTS=127.0.0.1,localhost
 CORS_ALLOW_ALL_ORIGINS=True
+GEMINI_API_KEY=<API_KEY>
 ```
 
 **Generate a secure SECRET_KEY:**
