@@ -32,7 +32,7 @@ Django REST Framework backend for the Personal Budget Tracker application.
 ### 1. Clone the Repository
 
 ```bash
-git clone <your-repo-url>
+git clone <repo_url>
 cd budget-tracker-backend
 ```
 
@@ -97,7 +97,7 @@ python manage.py createsuperuser
 Follow the prompts:
 - Username: `testuser`
 - Email: `test@example.com`
-- Password: `testpass123` (or your preferred password)
+- Password: `testpass123` (or any you want)
 
 ### 7. Run Development Server
 
