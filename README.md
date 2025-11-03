@@ -99,83 +99,7 @@ Follow the prompts:
 - Email: `test@example.com`
 - Password: `testpass123` (or your preferred password)
 
-### 7. Create Sample Data (Optional)
-
-```bash
-python manage.py shell
-```
-
-Run the following in the Python shell:
-
-```python
-from django.contrib.auth.models import User
-from apps.categories.models import Category
-from apps.transactions.models import Transaction
-from apps.budgets.models import Budget
-from datetime import date, datetime, timedelta
-
-# Get user
-user = User.objects.get(username='testuser')
-
-# Create categories
-salary = Category.objects.create(user=user, name='Salary', type='income')
-freelance = Category.objects.create(user=user, name='Freelance', type='income')
-rent = Category.objects.create(user=user, name='Rent', type='expense')
-groceries = Category.objects.create(user=user, name='Groceries', type='expense')
-utilities = Category.objects.create(user=user, name='Utilities', type='expense')
-entertainment = Category.objects.create(user=user, name='Entertainment', type='expense')
-
-# Create sample transactions
-Transaction.objects.create(
-    user=user, 
-    category=salary, 
-    type='income', 
-    amount=50000, 
-    description='Monthly Salary', 
-    date=date.today()
-)
-Transaction.objects.create(
-    user=user, 
-    category=freelance, 
-    type='income', 
-    amount=15000, 
-    description='Web Development Project', 
-    date=date.today() - timedelta(days=2)
-)
-Transaction.objects.create(
-    user=user, 
-    category=rent, 
-    type='expense', 
-    amount=20000, 
-    description='Monthly Rent', 
-    date=date.today() - timedelta(days=1)
-)
-Transaction.objects.create(
-    user=user, 
-    category=groceries, 
-    type='expense', 
-    amount=5000, 
-    description='Weekly Groceries', 
-    date=date.today() - timedelta(days=3)
-)
-Transaction.objects.create(
-    user=user, 
-    category=utilities, 
-    type='expense', 
-    amount=3000, 
-    description='Electricity Bill', 
-    date=date.today() - timedelta(days=5)
-)
-
-# Create budget for current month
-current_month = datetime(datetime.now().year, datetime.now().month, 1).date()
-Budget.objects.create(user=user, month=current_month, budget_amount=50000)
-
-print("Sample data created successfully!")
-exit()
-```
-
-### 8. Run Development Server
+### 7. Run Development Server
 
 ```bash
 python manage.py runserver
@@ -241,114 +165,6 @@ Server will start at: `http://127.0.0.1:8000/`
 | GET | `/api/budgets/current/` | Get current month budget | Yes |
 | GET | `/api/budgets/comparison/` | Budget vs actual comparison | Yes |
 
-## 🧪 Running Tests
-
-```bash
-# Run all tests
-python manage.py test
-
-# Run tests for specific app
-python manage.py test apps.transactions
-
-# Run with coverage
-pip install coverage
-coverage run --source='.' manage.py test
-coverage report
-```
-
-## 🌐 Deployment
-
-### Option 1: Railway (Recommended)
-
-1. Create account at [Railway.app](https://railway.app)
-
-2. Install Railway CLI:
-```bash
-npm install -g @railway/cli
-```
-
-3. Login and initialize:
-```bash
-railway login
-railway init
-```
-
-4. Add PostgreSQL database:
-```bash
-railway add
-# Select PostgreSQL
-```
-
-5. Set environment variables:
-```bash
-railway variables set SECRET_KEY=your-secret-key
-railway variables set DEBUG=False
-railway variables set ALLOWED_HOSTS=*.railway.app
-```
-
-6. Deploy:
-```bash
-railway up
-```
-
-### Option 2: Render
-
-1. Create account at [Render.com](https://render.com)
-
-2. Create new Web Service
-
-3. Connect GitHub repository
-
-4. Configure:
-   - Build Command: `pip install -r requirements.txt`
-   - Start Command: `gunicorn config.wsgi:application`
-
-5. Add environment variables in dashboard
-
-6. Create PostgreSQL database and link
-
-### Option 3: PythonAnywhere
-
-1. Create account at [PythonAnywhere.com](https://www.pythonanywhere.com)
-
-2. Upload code via Git or Files
-
-3. Create virtual environment
-
-4. Configure WSGI file
-
-5. Set up static files
-
-6. Reload web app
-
-## 🔒 Security Considerations
-
-**For Production:**
-
-1. **Set DEBUG=False** in `.env`
-
-2. **Use strong SECRET_KEY**
-
-3. **Configure ALLOWED_HOSTS**:
-```python
-ALLOWED_HOSTS = ['yourdomain.com', 'www.yourdomain.com']
-```
-
-4. **Use PostgreSQL** instead of SQLite
-
-5. **Set CORS properly**:
-```python
-CORS_ALLOWED_ORIGINS = [
-    "https://yourdomain.com",
-]
-```
-
-6. **Use HTTPS** (SSL certificate)
-
-7. **Environment variables** - Never commit `.env` to Git
-
-8. **Database backups** - Regular backups
-
 ## 📁 Project Structure
 
 ```
@@ -357,7 +173,8 @@ budget-tracker-backend/
 │   ├── users/          # Authentication
 │   ├── transactions/   # Transaction management
 │   ├── categories/     # Category management
-│   └── budgets/        # Budget management
+│   ├── budgets/        # Budget management
+    └── ai/             # AI Advice
 ├── config/             # Project settings
 │   ├── settings.py
 │   ├── urls.py
@@ -369,31 +186,11 @@ budget-tracker-backend/
 └── README.md
 ```
 
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit changes (`git commit -m 'Add AmazingFeature'`)
-4. Push to branch (`git push origin feature/AmazingFeature`)
-5. Open Pull Request
-
-## 📝 License
-
-This project is created for educational purposes.
-
 ## 👥 Test Credentials
 
 **For reviewers:**
 - Username: `testuser`
 - Password: `testpass123`
-
-## 🐛 Known Issues
-
-- None currently
-
-## 📞 Support
-
-For issues and questions, please open an issue on GitHub.
 
 ---
 
