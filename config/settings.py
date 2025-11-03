@@ -213,3 +213,9 @@ CORS_ALLOW_METHODS = [
     'POST',
     'PUT',
 ]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://budgettracker-production-033c.up.railway.app"
+]
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
