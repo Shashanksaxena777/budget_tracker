@@ -2,7 +2,6 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
-# Define admin user details
 username = "testuser"
 email = "admin@example.com"
 password = "testpass123"
