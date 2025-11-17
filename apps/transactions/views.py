@@ -4,10 +4,16 @@ from rest_framework.response import Response
 from django.db.models import Sum
 from .models import Transaction
 from .serializers import TransactionSerializer
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import SearchFilter, OrderingFilter
+from .filters import TransactionFilter
 
 class TransactionViewSet(viewsets.ModelViewSet):
     serializer_class = TransactionSerializer
-    
+    filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
+    filterset_class = TransactionFilter
+    search_fields = ['description']
+    ordering_fields = ['date', 'amount', 'created_at']
     def get_queryset(self):
         return Transaction.objects.filter(user=self.request.user)
     
