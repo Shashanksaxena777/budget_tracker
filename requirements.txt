@@ -14,7 +14,7 @@ django-filter==24.3
 python-decouple==3.8
 
 # PostgreSQL adapter (for production)
-psycopg[binary]==3.1.18
+psycopg2-binary==2.9.9
 
 # For deployment
 gunicorn==21.2.0
